@@ -1,0 +1,86 @@
+/* Main card container styling */
+.task-card{
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    padding: 16px;
+
+    background-color: #f9f9f9;
+    border-radius: 8px; /* Rounded card edges */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle elevation */
+
+    width : 20rem;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* Title styling */
+.task-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 2rem;
+}
+
+/* Task description text */
+.task-description {
+    color: #666;
+    font-size: 1.25rem;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+}
+
+/* Base styling for priority dropdown */
+.priority{
+    padding: 4px 8px;
+    font-size: 1rem;
+
+    border-radius: 4px;
+
+    /* Remove browser default dropdown styling */
+    appearance: none;
+    border: none;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Deadline badge styling */
+.deadline{
+    padding: 4px 8px;
+    font-size: 1rem;
+
+    background-color: #ddddff;
+    color: blue;
+
+    border-radius: 4px; 
+}
+
+/* Layout container for priority and deadline */
+.timeline{
+    display: flex;
+    gap: 8px;
+
+    /* Push priority left and deadline right */
+    justify-content: space-between;
+
+    margin-top: 8px;
+}
+
+/* Priority-specific color styles */
+
+.High{
+    background-color: #ffdddd;
+    color: #660000;
+}
+
+.Medium{
+    background-color: #ffffdd;
+    color: #666600;
+}
+
+.Low{
+    background-color: #ddffdd;
+    color: #006600;
+}
