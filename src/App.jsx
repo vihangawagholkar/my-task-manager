@@ -4,9 +4,19 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import  TaskCard  from "./components/TaskCard";
 function App() {
+
+  const tasks = [
+    {title: "Study", description: "Finish assignment", priority: "High", deadline: "Midnight"},
+    {title: "Workout", description: "Legs", priority: "Medium", deadline: "6 pm"}
+    
+]
+
+
   return (<div className="App">
-      {/* <h1>My Task Manager</h1> */}
-      <TaskCard task={{ id: 1, title: 'Sample Task', description: 'This is a sample task.', completed: false }} onDelete={() => {}} onToggle={() => {}} />
+      
+      <div className='task-card-component'>
+      {tasks.map(task => <TaskCard title={task.title} description={task.description} key={task.title} priorityPassed={task.priority} deadline={task.deadline}/>)}
+      </div>
     </div>
   )
 }

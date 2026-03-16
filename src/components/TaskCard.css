@@ -40,7 +40,8 @@
 
     /* Remove browser default dropdown styling */
     appearance: none;
-    border: none;
+    /* border: none; */
+    -webkit-appearance: none;
 
     cursor: pointer;
     font-weight: bold;
@@ -73,6 +74,8 @@
 .High{
     background-color: #ffdddd;
     color: #660000;
+    /* border-width: 1px; */
+    /* border-color: #8c4949 */
 }
 
 .Medium{

@@ -5,14 +5,18 @@ import './TaskCard.css';
 import { useState } from 'react';
 
 // TaskCard component represents a single task in the UI
-function TaskCard({ }) {
+function TaskCard({title, description, priorityPassed, deadline}) {
 
   // Available priority options for the dropdown
   const options = ['High', 'Medium', 'Low'];
 
+  console.log(priorityPassed);
+  
   // React state to track the currently selected priority
   // Default value is the first option ("High")
-  const [priority, setPriority] = useState(options[0]);
+  const [priority, setPriority] = useState(priorityPassed);
+
+  const [open, setOpen] = useState(false);
 
   // Event handler that runs whenever the dropdown selection changes
   // Updates the priority state with the selected value
@@ -26,10 +30,10 @@ function TaskCard({ }) {
     <div className="task-card">
 
       {/* Task title */}
-      <h2 className="task-title">Task Title</h2>
+      <h2 className="task-title">{title}</h2>
 
       {/* Short description of the task */}
-      <div className="task-description">Task Description</div> 
+      <div className="task-description">{description}</div> 
 
       {/* Container for metadata such as priority and deadline */}
       <div className='timeline'>
@@ -46,13 +50,15 @@ function TaskCard({ }) {
 
           {/* Generate dropdown options dynamically from the options array */}
           {options.map((option)=>{
-            return <option key={option}>{option}</option>
+            return <option key={option} value={option}>{option}</option>
           })}
 
         </select>
+        
 
+        {/* <button className='priority'>{priority}</button> */}
         {/* Deadline label for the task */}
-        <div className="deadline">Deadline: Date</div>
+        <div className="deadline">{deadline}</div>
 
       </div>
     </div>
