@@ -11,7 +11,7 @@ function TaskCard({title, description, priorityPassed, deadline}) {
   const options = ['High', 'Medium', 'Low'];
 
   console.log(priorityPassed);
-  
+
   // React state to track the currently selected priority
   // Default value is the first option ("High")
   const [priority, setPriority] = useState(priorityPassed);
@@ -25,6 +25,7 @@ function TaskCard({title, description, priorityPassed, deadline}) {
   };
 
   return (
+    
     
     // Main container for the task card
     <div className="task-card">

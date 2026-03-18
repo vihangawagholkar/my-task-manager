@@ -1,0 +1,45 @@
+.button-form{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 3rem;
+    margin: 2rem;
+    border-radius: 2px;
+}
+
+.add-task-form{
+    
+    display: flex;
+    
+    
+}
+
+.form{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-elements{
+    display: flex;
+}
+
+label {
+    color: black;
+}
+
+input {
+    margin-left: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+    color: black;
+    background-color: white;
+    border-style: none;
+}
+
+.select{
+    margin-left: 10px;
+}
+
