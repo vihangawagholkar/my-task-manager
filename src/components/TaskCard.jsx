@@ -5,7 +5,7 @@ import './TaskCard.css';
 import { useState } from 'react';
 
 // TaskCard component represents a single task in the UI
-function TaskCard({title, description, priorityPassed, deadline}) {
+function TaskCard({title, description, priorityPassed, deadline, deleteTask}) {
 
   // Available priority options for the dropdown
   const options = ['High', 'Medium', 'Low'];
@@ -23,6 +23,8 @@ function TaskCard({title, description, priorityPassed, deadline}) {
   const handleChange = (e) => {
     setPriority(e.target.value);
   };
+
+  
 
   return (
     
@@ -60,6 +62,8 @@ function TaskCard({title, description, priorityPassed, deadline}) {
         {/* <button className='priority'>{priority}</button> */}
         {/* Deadline label for the task */}
         <div className="deadline">{deadline}</div>
+
+        <button className='delete' onClick={deleteTask}>Delete</button>
 
       </div>
     </div>

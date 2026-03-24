@@ -7,17 +7,20 @@ import AddTaskForm from './components/AddTaskForm';
 
 function App() {
 
-  const [tasks, setTask] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = (newTask) => {
-    setTask([...tasks, newTask]);
+    setTasks([...tasks, newTask]);
   }
 
+  const deleteTask = (index) => {
+    setTasks(tasks.filter((task, i) => i !== index));
+  }
   return (<div className="App">
       
       <AddTaskForm addTask = {addTask}/>
       <div className='task-card-component'>
-      {tasks.map(task => <TaskCard title={task.title} description={task.description} key={task.title} priorityPassed={task.priority} deadline={task.deadline}/>)}
+      {tasks.map((task, index) => <TaskCard key = {index} title={task.title} description={task.description} priorityPassed={task.priority} deadline={task.deadline} deleteTask={() => deleteTask(index)}/>)}
       </div>
     </div>
   )
