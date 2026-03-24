@@ -18,6 +18,8 @@
     font-family: Arial, sans-serif;
     font-weight: bold;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+
 }
 
 .task-card:hover{
@@ -34,6 +36,10 @@
     font-size: 2rem;
 }
 
+.completed{
+    text-decoration: line-through;
+    color: gray;
+}
 /* Task description text */
 .task-description {
     color: #666;

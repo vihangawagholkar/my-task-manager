@@ -5,7 +5,7 @@ import './TaskCard.css';
 import { useState } from 'react';
 
 // TaskCard component represents a single task in the UI
-function TaskCard({title, description, priorityPassed, deadline, deleteTask}) {
+function TaskCard({title, description, priorityPassed, deadline, deleteTask, completed, toggleCompleted}) {
 
   // Available priority options for the dropdown
   const options = ['High', 'Medium', 'Low'];
@@ -32,8 +32,9 @@ function TaskCard({title, description, priorityPassed, deadline, deleteTask}) {
     // Main container for the task card
     <div className="task-card">
 
+      <input type='checkbox' checked = {completed} onChange={toggleCompleted}></input>
       {/* Task title */}
-      <h2 className="task-title">{title}</h2>
+      <h2 className={completed ? "task-title completed" : "task-title"}>{title}</h2>
 
       {/* Short description of the task */}
       <div className="task-description">{description}</div> 
