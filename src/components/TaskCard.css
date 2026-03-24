@@ -4,14 +4,26 @@
     flex-direction: column; /* Stack elements vertically */
     padding: 16px;
 
+    
     background-color: #f9f9f9;
     border-radius: 8px; /* Rounded card edges */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle elevation */
 
-    width : 20rem;
+    width : 100%;
+
+    max-width: 20rem;
+
+    flex: 0 0 auto;
 
     font-family: Arial, sans-serif;
     font-weight: bold;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.task-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0,.15);
+    transition: all 0.5s ease-in-out;
 }
 
 /* Title styling */

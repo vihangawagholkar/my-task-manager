@@ -5,12 +5,13 @@
     padding: 3rem;
     margin: 2rem;
     border-radius: 2px;
+    
 }
 
 .add-task-form{
     
     display: flex;
-    
+    width: 100%;
     
 }
 
@@ -23,6 +24,8 @@
 
 .form-elements{
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 label {
@@ -30,16 +33,15 @@ label {
 }
 
 input {
-    margin-left: 10px;
+    
     border-width: 1px;
-    border-radius: 5px;
+    border-radius: 4px;
     border-color: black;
     color: black;
     background-color: white;
-    border-style: none;
+    border: 1px solid #ccc;
+    padding: 6px 8px;
 }
 
-.select{
-    margin-left: 10px;
-}
+
 

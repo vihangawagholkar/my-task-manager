@@ -11,4 +11,16 @@
   flex-direction: row;
   gap: 3rem;
   flex-wrap: wrap;
+  flex: 1;
+  align-items: flex-start;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.App{
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }

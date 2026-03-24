@@ -42,6 +42,11 @@ function AddTaskForm({addTask}) {
     }
 
     addTask(newTask);
+
+    setTitle('');
+    setDescription('');
+    setPriority(options[0]);
+    setDeadline('');
   }
   return (
     <>
