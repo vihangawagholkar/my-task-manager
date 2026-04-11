@@ -1,18 +1,29 @@
 import './AddTaskForm.css';
 
-import { useState } from "react";
-function AddTaskForm({addTask}) {
+import { useEffect, useState } from "react";
+function AddTaskForm({ addTask }) {
 
   const options = ['High', 'Medium', 'Low'];
 
 
   const [priority, setPriority] = useState(options[0]);
 
+
+
   const [title, setTitle] = useState('');
+
+
+
+
   const [description, setDescription] = useState('');
+
+ 
+
   const [deadline, setDeadline] = useState('');
 
   
+
+
   const handleChange = (e) => {
     setPriority(e.target.value);
   }
@@ -35,10 +46,10 @@ function AddTaskForm({addTask}) {
     e.preventDefault();
 
     const newTask = {
-    title,
-    description,
-    priority,
-    deadline
+      title,
+      description,
+      priority,
+      deadline
     }
 
     addTask(newTask);
@@ -84,9 +95,9 @@ function AddTaskForm({addTask}) {
             </div>
 
 
-        <div className='submit'>
-          <button type='submit'>Submit</button>
-        </div>
+            <div className='submit'>
+              <button type='submit'>Submit</button>
+            </div>
           </form>
         </div>
       </div>

@@ -24,7 +24,7 @@
 
 .task-card:hover{
     transform: translateY(-8px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0,.15);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     transition: all 0.5s ease-in-out;
 }
 
@@ -49,6 +49,10 @@
     text-align: left;
 }
 
+
+.task-title, .task-description{
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
 /* Base styling for priority dropdown */
 .priority{
     padding: 4px 8px;

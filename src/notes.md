@@ -28,11 +28,13 @@ Each UI piece should be a separate reusable component.
 
 Example structure:
 
+```text
 src/
  ├ components/
  │   └ TaskCard.jsx
  ├ App.jsx
  └ main.jsx
+```
 
 TaskCard Component
 
@@ -56,7 +58,9 @@ state = data that changes in the UI
 
 Example pattern:
 
+```javascript
 const [state, setState] = useState(initialValue)
+```
 
 In the project:
 
@@ -84,7 +88,9 @@ This means its value is controlled by React state instead of the browser.
 
 Pattern:
 
+```jsx
 <select value={state} onChange={handler}>
+```
 
 Why this matters:
 	•	React controls the UI
@@ -99,7 +105,9 @@ React often renders repeated elements using map.
 
 Example pattern:
 
+```javascript
 array.map(item => JSX)
+```
 
 In this project:
 
@@ -115,7 +123,9 @@ Whenever rendering lists, each element needs a unique key.
 
 Example:
 
+```jsx
 <option key={option}>
+```
 
 Purpose:
 	•	Helps React track which elements change
@@ -129,7 +139,9 @@ User interactions trigger event handlers.
 
 Example:
 
+```jsx
 onChange={handleChange}
+```
 
 The event object gives access to input values.
 
@@ -147,15 +159,19 @@ The card layout uses Flexbox.
 
 Main card layout:
 
-display: flex
-flex-direction: column
+```css
+display: flex;
+flex-direction: column;
+```
 
 Metadata section:
 
+```css
 .timeline {
   display: flex;
   gap: 8px;
 }
+```
 
 This aligns priority and deadline horizontally.
 
@@ -212,3 +228,276 @@ Key Lessons From This Step
 	•	Lists should be rendered with map()
 	•	Each list item needs a key
 	•	UI components should be reusable
+
+
+
+11. Lifting State Up
+
+State should live in the closest common parent component that needs it.
+
+In the task manager:
+
+App.jsx
+   ↓
+TaskCard.jsx
+
+App owns the tasks state and passes data down as props.
+
+Example pattern:
+
+const [tasks, setTasks] = useState([]);
+
+Child components do not modify state directly.
+They call functions passed through props.
+
+Example:
+
+<TaskCard deleteTask={() => deleteTask(index)} />
+
+Flow:
+
+Child component action
+        ↓
+calls parent function
+        ↓
+parent updates state
+        ↓
+React re-renders UI
+
+
+⸻
+
+12. Updating Arrays in React State
+
+React state should never be mutated directly.
+
+Wrong:
+
+```javascript
+tasks.push(newTask)
+```
+
+Correct approach: create a new array.
+
+Add task:
+
+```javascript
+setTasks([...tasks, newTask])
+```
+
+Delete task:
+
+```javascript
+setTasks(tasks.filter((task, i) => i !== index))
+```
+
+Update task:
+
+```javascript
+setTasks(
+  tasks.map((task, i) =>
+    i === index ? { ...task, completed: !task.completed } : task
+  )
+)
+```
+
+Key idea:
+
+React detects state changes through new references.
+
+
+⸻
+
+13. Immutable Object Updates
+
+When updating objects inside arrays, use spread operator.
+
+Example:
+
+```javascript
+{ ...task, completed: !task.completed }
+```
+
+This creates a new object instead of modifying the existing one.
+
+⸻
+
+14. Passing Functions as Props
+
+Functions can be passed from parent components to children.
+
+
+Example:
+
+```jsx
+<TaskCard
+  deleteTask={() => deleteTask(index)}
+  toggleCompleted={() => toggleCompleted(index)}
+/>
+```
+
+This allows child components to trigger actions in the parent.
+
+⸻
+
+15. Conditional Rendering
+
+React components can render different UI depending on state.
+
+Example in your project:
+
+if (isEditing) {
+  return <EditMode />
+}
+return <ViewMode />
+
+Used to switch between:
+
+Task display mode
+Task editing mode
+
+
+⸻
+
+16. Form Handling in React
+
+Forms should use controlled inputs.
+
+
+Example pattern:
+
+```javascript
+const [title, setTitle] = useState('')
+```
+
+```jsx
+<input
+  value={title}
+  onChange={(e) => setTitle(e.target.value)}
+/>
+```
+
+Form submission pattern:
+
+```javascript
+const handleSubmit = (e) => {
+  e.preventDefault();
+}
+```
+
+Purpose:
+
+Prevent page refresh
+Handle data inside React
+
+
+⸻
+
+17. Local Storage Persistence
+
+Browser localStorage can store data between page refreshes.
+
+Example:
+
+```javascript
+localStorage.setItem('tasks', JSON.stringify(title))
+```
+
+Load data when component initializes:
+
+```javascript
+const saved = localStorage.getItem('tasks')
+```
+
+Use lazy initialization:
+
+```javascript
+useState(() => {
+  const saved = localStorage.getItem('title')
+  return saved ? JSON.parse(saved) : ""
+})
+```
+
+Concept:
+
+localStorage → React state
+React state → localStorage
+
+This allows the app to remember data after refresh.
+
+⸻
+
+18. useEffect
+
+useEffect runs side effects after rendering.
+
+Example:
+
+```javascript
+useEffect(() => {
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}, [tasks])
+```
+
+Meaning:
+
+Whenever tasks changes → run effect
+
+Common uses:
+	•	saving data
+	•	fetching APIs
+	•	timers
+	•	subscriptions
+
+⸻
+17. Stale State (VERY IMPORTANT)
+
+Problem:
+
+```javascript
+
+setTasks([...tasks, newTask])
+
+```
+
+	•	tasks might be outdated
+
+```javascript
+
+setTasks(prev => [...prev, newTask])
+
+```
+Rule:
+
+Always use previous state when updating based on existing state.
+
+One Extra Note I Recommend
+
+Add a “Project Architecture” section.
+
+Example:
+
+```text
+App.jsx
+ ├ AddTaskForm.jsx
+ └ TaskCard.jsx
+```
+
+Responsibilities:
+
+App
+- manages tasks state
+- handles CRUD logic
+
+AddTaskForm
+- handles user input
+- creates new tasks
+
+TaskCard
+- displays a task
+- allows edit/delete/complete
+
+This kind of note helps when projects get larger.
+
+⸻
+
