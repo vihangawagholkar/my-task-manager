@@ -23,22 +23,29 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const deleteTask = (index) => {
-    setTasks(tasks.filter((task, i) => i !== index));
+  const deleteTask = (key) => {
+    setTasks(tasks.filter((task) => key !== task.id));
   }
 
-  const toggleCompleted = (index) => {
-    setTasks(tasks.map((task, i) => i === index ? { ...task, completed: !task.completed } : task));
+  const toggleCompleted = (key) => {
+    setTasks(tasks.map((task) => key === task.id ? { ...task, completed: !task.completed } : task));
   }
 
-  const editTask = (index, updatedTask) => {
-    setTasks(tasks.map((task, i) => i === index ? { ...task, ...updatedTask, isEditing: !task.isEditing } : task));
+  const toggleEdit = (key) => {
+    setTasks(tasks.map((task) => 
+
+      key === task.id ? {...task, isEditing: !task.isEditing} : task
+    ))
+  }
+
+  const editTask = (key, updatedTask) => {
+    setTasks(tasks.map((task) => key === task.id ? { ...task, ...updatedTask} : task));
   }
   return (<div className="App">
 
     <AddTaskForm addTask={addTask} />
     <div className='task-card-component'>
-      {tasks.map((task, index) => <TaskCard key={index} title={task.title} description={task.description} priorityPassed={task.priority} deadline={task.deadline} deleteTask={() => deleteTask(index)} completed={task.completed} toggleCompleted={() => toggleCompleted(index)} isEditing={task.isEditing} editTask={(updatedTask) => editTask(index, updatedTask)} />)}
+      {tasks.map((task) => <TaskCard key = {task.id} title={task.title} description={task.description} priorityPassed={task.priority} deadline={task.deadline} deleteTask={() => deleteTask(task.id)} completed={task.completed} toggleCompleted={() => toggleCompleted(task.id)} isEditing={task.isEditing} editTask={(updatedTask) => editTask(task.id, updatedTask)} toggleEdit = {() => toggleEdit(task.id)} />)}
     </div>
   </div>
   )

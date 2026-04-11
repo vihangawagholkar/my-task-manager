@@ -471,6 +471,22 @@ Rule:
 
 Always use previous state when updating based on existing state.
 
+18. Using IDs (Important Upgrade)
+
+Instead of array index, each task now uses a unique ID:
+
+```javascript
+
+const id = Date.now();
+
+```
+
+Why this is important:
+	•	Prevents bugs when reordering
+	•	Ensures correct updates/deletes
+	•	Mimics real database primary keys
+
+
 One Extra Note I Recommend
 
 Add a “Project Architecture” section.

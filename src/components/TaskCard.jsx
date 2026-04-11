@@ -5,7 +5,7 @@ import './TaskCard.css';
 import { useState } from 'react';
 
 // TaskCard component represents a single task in the UI
-function TaskCard({ title, description, priorityPassed, deadline, deleteTask, completed, toggleCompleted, isEditing, editTask }) {
+function TaskCard({ title, description, priorityPassed, deadline, deleteTask, completed, toggleCompleted, isEditing, editTask, toggleEdit }) {
 
   // Available priority options for the dropdown
   const options = ['High', 'Medium', 'Low'];
@@ -16,7 +16,7 @@ function TaskCard({ title, description, priorityPassed, deadline, deleteTask, co
   // Default value is the first option ("High")
   const [priority, setPriority] = useState(priorityPassed);
 
-  const [open, setOpen] = useState(false);
+  
 
   const [editTitle, setEditTitle] = useState(title);
 
@@ -72,19 +72,17 @@ function TaskCard({ title, description, priorityPassed, deadline, deleteTask, co
           <button
             className='edit'
             onClick={() => {
-              if (isEditing) {
-                // Save edits
+              
                 editTask({
                   title: editTitle,
                   description: editDescription,
                   deadline: editDeadline,
                   priority: priority
                 });
-              } else {
-                // Just toggle edit mode
-                editTask({});
+             
+                toggleEdit();
               }
-            }}
+            }
           >
             {isEditing ? "Done" : "Edit"}
           </button>
@@ -136,7 +134,7 @@ function TaskCard({ title, description, priorityPassed, deadline, deleteTask, co
         <button
           className='edit'
           onClick={() => {
-            if (isEditing) {
+            
               // Save edits
               editTask({
                 title: editTitle,
@@ -144,10 +142,7 @@ function TaskCard({ title, description, priorityPassed, deadline, deleteTask, co
                 deadline: editDeadline,
                 priority: priority
               });
-            } else {
-              // Just toggle edit mode
-              editTask({});
-            }
+            toggleEdit();
           }}
         >
           {isEditing ? "Done" : "Edit"}
